@@ -6,11 +6,12 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import com.github.saburto.assigment.data.Data;
+import com.github.saburto.assigment.data.Side;
 
 public class DataBinaryFileTempRepository implements DataRepository {
 
     @Override
-    public void save(Data data, String side) {
+    public void save(Data data, Side side) {
         try {
             String id = data.getId();
 
@@ -24,7 +25,7 @@ public class DataBinaryFileTempRepository implements DataRepository {
     }
 
     @Override
-    public Data getById(String id, String side) {
+    public Data getById(String id, Side side) {
         try {
             byte[] bytes = Files.readAllBytes(getTempFilePath(id, side));
             return new Data(bytes, id);
@@ -33,13 +34,13 @@ public class DataBinaryFileTempRepository implements DataRepository {
         }
     }
 
-    private void existIdThenThrowException(String id, String side) {
+    private void existIdThenThrowException(String id, Side side) {
         if(Files.exists(getTempFilePath(id, side))){
             throw new IdAlreadyExistsException(id, side);
         }
     }
 
-    private Path getTempFilePath(String id, String side) {
+    private Path getTempFilePath(String id, Side side) {
         return Paths.get(System.getProperty("java.io.tmpdir"), id + side + ".tmp");
     }
 }

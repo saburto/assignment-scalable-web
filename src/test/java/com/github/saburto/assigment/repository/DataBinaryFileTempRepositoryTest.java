@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
 import com.github.saburto.assigment.data.Data;
+import com.github.saburto.assigment.data.Side;
 
 public class DataBinaryFileTempRepositoryTest {
 
@@ -36,39 +37,53 @@ public class DataBinaryFileTempRepositoryTest {
 
     @After
     public void tearDown() {
-        Path tmpPath = Paths.get(System.getProperty("java.io.tmpdir"), id + "left.tmp");
+        Path tmpPath = getTempPath();
         File file = tmpPath.toFile();
         if (file.exists()) {
             file.delete();
         }
     }
 
+
     @Test
     public void saveFileIntoTmpDir() {
-        Path tmpPath = Paths.get(System.getProperty("java.io.tmpdir"), id + "left.tmp");
+        Path tmpPath = getTempPath();
 
-        dataBinaryRepository.save(new Data(bytes, id), "left");
+        dataBinaryRepository.save(new Data(bytes, id), Side.LEFT);
 
         assertThat(tmpPath).exists().hasBinaryContent(bytes);
-
     }
+    
+    @Test
+    public void saveTwoFilesSameIdDifferentSideIntoTmpDir() {
+        Path tmpPath = getTempPath();
+
+        dataBinaryRepository.save(new Data(bytes, id), Side.LEFT);
+        dataBinaryRepository.save(new Data(bytes, id), Side.RIGHT);
+
+        assertThat(tmpPath).exists().hasBinaryContent(bytes);
+    }
+
 
     @Test
     public void saveFileWihtSameIdAndSideThatAlreadyExistsThrowAnException() {
         expectedException.expect(IdAlreadyExistsException.class);
-        expectedException.expectMessage(is("Id [" + id + "] already exists for side left"));
+        expectedException.expectMessage(is("Id [" + id + "] already exists for side LEFT"));
 
-        dataBinaryRepository.save(new Data(bytes, id), "left");
-        dataBinaryRepository.save(new Data(bytes, id), "left");
+        dataBinaryRepository.save(new Data(bytes, id), Side.LEFT);
+        dataBinaryRepository.save(new Data(bytes, id), Side.LEFT);
     }
 
     @Test
     public void getDataFromFileOfTmpDir() {
-        dataBinaryRepository.save(new Data(bytes, id), "left");
+        dataBinaryRepository.save(new Data(bytes, id), Side.LEFT);
 
-        Data data = dataBinaryRepository.getById(id, "left");
+        Data data = dataBinaryRepository.getById(id, Side.LEFT);
 
         assertThat(data).isNotNull().extracting(Data::getBytes).containsExactly(bytes);
     }
-
+    
+    private Path getTempPath() {
+        return Paths.get(System.getProperty("java.io.tmpdir"), id + Side.LEFT  +".tmp");
+    }
 }
