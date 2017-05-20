@@ -5,8 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.github.saburto.assignment.comparator.BinaryFileComparator;
-import com.github.saburto.assignment.comparator.Result;
 import com.github.saburto.assignment.data.Data;
 
 public class BinaryFileComparatorTest {
@@ -22,7 +20,8 @@ public class BinaryFileComparatorTest {
     public void compareEqualsByteArraysShouldReturnResultIsEqualTrue() {
 
         Result result =
-                binaryFileComparator.compare(new Data(new byte[] {1, 2}, "1"), new Data(new byte[] {1, 2}, "1"));
+                binaryFileComparator.compare(new Data(new byte[] {1, 2}, "1"),
+                        new Data(new byte[] {1, 2}, "1"));
 
         assertThat(result).isNotNull();
         assertThat(result.isEqual()).isTrue();

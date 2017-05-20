@@ -13,6 +13,9 @@ import com.github.saburto.assignment.data.Side;
 @Repository
 public class DataBinaryFileTempRepository implements DataRepository {
 
+    private static final String TMP_SUFFIX = ".tmp";
+    private static final String TMP_PROPERTY = "java.io.tmpdir";
+
     @Override
     public void save(Data data, Side side) {
         try {
@@ -31,7 +34,7 @@ public class DataBinaryFileTempRepository implements DataRepository {
     public Data getById(String id, Side side) {
         try {
             throwExceptionIfFileNoExists(id, side);
-            
+
             byte[] bytes = Files.readAllBytes(getTempFilePath(id, side));
             return new Data(bytes, id);
         } catch (IOException e) {
@@ -40,13 +43,13 @@ public class DataBinaryFileTempRepository implements DataRepository {
     }
 
     private void throwExceptionIfFileNoExists(String id, Side side) {
-        if(!fileExists(id, side)){
+        if (!fileExists(id, side)) {
             throw new FileNoYetExistsException(id, side);
         }
     }
 
     private void existIdThenThrowException(String id, Side side) {
-        if(fileExists(id, side)){
+        if (fileExists(id, side)) {
             throw new IdAlreadyExistsException(id, side);
         }
     }
@@ -56,6 +59,6 @@ public class DataBinaryFileTempRepository implements DataRepository {
     }
 
     private Path getTempFilePath(String id, Side side) {
-        return Paths.get(System.getProperty("java.io.tmpdir"), id + side + ".tmp");
+        return Paths.get(System.getProperty(TMP_PROPERTY), id + side + TMP_SUFFIX);
     }
 }

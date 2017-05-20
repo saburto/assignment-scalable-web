@@ -4,40 +4,38 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
 
-import com.github.saburto.assignment.data.Data;
-
 public class DataTest {
 
     @Test
     public void twoDataWithSameByteArraysReturnSameSizeTrue() {
         Data data1 = new Data(new byte[] {1, 2}, "1");
         Data data2 = new Data(new byte[] {1, 2}, "1");
-        
+
         assertThat(data1.isSameSize(data2)).isTrue();
     }
-    
+
     @Test
     public void twoDataWithDifferentByteArraysReturnSameSizeFalse() {
         Data data1 = new Data(new byte[] {1, 2}, "1");
         Data data2 = new Data(new byte[] {1, 2, 3}, "1");
-        
+
         assertThat(data1.isSameSize(data2)).isFalse();
     }
-    
+
     @Test
     public void hasSameByteReturnsTrueWhenTwoBytesAreEqualsOnTheSameIndex() {
         Data data1 = new Data(new byte[] {1, 2}, "1");
         Data data2 = new Data(new byte[] {1, 2}, "1");
-        
+
         assertThat(data1.hasSameByte(0, data2)).isTrue();
         assertThat(data1.hasSameByte(1, data2)).isTrue();
     }
-    
+
     @Test
     public void hasSameByteReturnsFalseWhenTwoBytesAreNotEqualsOnTheSameIndex() {
         Data data1 = new Data(new byte[] {1, 2}, "1");
         Data data2 = new Data(new byte[] {1, 3}, "1");
-        
+
         assertThat(data1.hasSameByte(0, data2)).isTrue();
         assertThat(data1.hasSameByte(1, data2)).isFalse();
     }

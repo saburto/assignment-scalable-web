@@ -16,16 +16,16 @@ public class BinaryFileComparator {
 
     public Result compare(Data left, Data rigth) {
         boolean sameSize = left.isSameSize(rigth);
-        
-        Map<Integer, Integer> diffs = sameSize ? getDiffs(left, rigth) : emptyMap() ;
-        
+
+        Map<Integer, Integer> diffs = sameSize ? getDiffs(left, rigth) : emptyMap();
+
         return new Result(sameSize, diffs);
     }
 
     private Map<Integer, Integer> getDiffs(Data left, Data rigth) {
         int lastKey = RESET_INDEX;
         Map<Integer, Integer> diffs = new HashMap<>();
-        
+
         for (int i = 0; i < left.size(); i++) {
             if (left.hasSameByte(i, rigth)) {
                 lastKey = RESET_INDEX;
@@ -34,7 +34,7 @@ public class BinaryFileComparator {
                 updateCountLengthDiff(diffs, lastKey);
             }
         }
-        
+
         return diffs;
     }
 

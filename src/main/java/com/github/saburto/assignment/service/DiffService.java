@@ -22,10 +22,10 @@ public class DiffService {
     }
 
     public Result compareFromId(String id) {
-        
+
         Data left = dataRepository.getById(id, Side.LEFT);
         Data right = dataRepository.getById(id, Side.RIGHT);
-        
+
         return binaryFileComparator.compare(left, right);
     }
 

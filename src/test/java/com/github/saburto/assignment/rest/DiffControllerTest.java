@@ -71,26 +71,26 @@ public class DiffControllerTest {
 
     @Test
     public void postFileLeft() throws Exception {
-        
+
         mvc.perform(post("/v1/diff/2222/left")
             .content("{\"data\":\"MTIz\"}")
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
             .andExpect(status().isOk());
 
-        verify(diffService).save("2222", new byte[] {0x31,0x32, 0x33}, Side.LEFT);
+        verify(diffService).save("2222", new byte[] {0x31, 0x32, 0x33}, Side.LEFT);
     }
-    
+
     @Test
     public void postFileRight() throws Exception {
-        
+
         mvc.perform(post("/v1/diff/2222/right")
             .content("{\"data\":\"MTIz\"}")
             .contentType(MediaType.APPLICATION_JSON)
             .accept(MediaType.APPLICATION_JSON))
-        .andExpect(status().isOk());
-        
-        verify(diffService).save("2222", new byte[] {0x31,0x32, 0x33}, Side.RIGHT);
+            .andExpect(status().isOk());
+
+        verify(diffService).save("2222", new byte[] {0x31, 0x32, 0x33}, Side.RIGHT);
     }
 
 }

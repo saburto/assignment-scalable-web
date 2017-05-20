@@ -16,10 +16,6 @@ import org.junit.rules.ExpectedException;
 
 import com.github.saburto.assignment.data.Data;
 import com.github.saburto.assignment.data.Side;
-import com.github.saburto.assignment.repository.DataBinaryFileTempRepository;
-import com.github.saburto.assignment.repository.DataRepository;
-import com.github.saburto.assignment.repository.FileNoYetExistsException;
-import com.github.saburto.assignment.repository.IdAlreadyExistsException;
 
 public class DataBinaryFileTempRepositoryTest {
 
@@ -56,7 +52,7 @@ public class DataBinaryFileTempRepositoryTest {
 
         assertThat(tmpPath).exists().hasBinaryContent(bytes);
     }
-    
+
     @Test
     public void saveTwoFilesSameIdDifferentSideIntoTmpDir() {
         Path tmpPath = getTempPath();
@@ -85,7 +81,7 @@ public class DataBinaryFileTempRepositoryTest {
 
         assertThat(data).isNotNull().extracting(Data::getBytes).containsExactly(bytes);
     }
-    
+
     @Test
     public void throwExceptionWhenFileForIdAndSideNoExists() {
         expectedException.expect(FileNoYetExistsException.class);
@@ -93,8 +89,8 @@ public class DataBinaryFileTempRepositoryTest {
 
         dataBinaryRepository.getById("321", Side.LEFT);
     }
-    
+
     private Path getTempPath() {
-        return Paths.get(System.getProperty("java.io.tmpdir"), id + Side.LEFT  +".tmp");
+        return Paths.get(System.getProperty("java.io.tmpdir"), id + Side.LEFT + ".tmp");
     }
 }
