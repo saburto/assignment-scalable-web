@@ -20,7 +20,7 @@ public class BinaryFileComparatorTest {
     public void compareEqualsByteArraysShouldReturnResultIsEqualTrue() {
 
         Result result =
-                binaryFileComparator.compare(new Data(new byte[] {1, 2}), new Data(new byte[] {1, 2}));
+                binaryFileComparator.compare(new Data(new byte[] {1, 2}, "1"), new Data(new byte[] {1, 2}, "1"));
 
         assertThat(result).isNotNull();
         assertThat(result.isEqual()).isTrue();
@@ -28,8 +28,8 @@ public class BinaryFileComparatorTest {
 
     @Test
     public void compareDifferentSizeDataShouldReturnResultFalse() {
-        Data left = new Data(new byte[] {1, 2});
-        Data rigth = new Data(new byte[] {1, 2, 3});
+        Data left = new Data(new byte[] {1, 2}, "1");
+        Data rigth = new Data(new byte[] {1, 2, 3}, "1");
         Result result = binaryFileComparator.compare(left, rigth);
 
         assertThat(result).isNotNull();
@@ -38,8 +38,8 @@ public class BinaryFileComparatorTest {
 
     @Test
     public void compareSameSizeButDifferentDataShouldReturnResultFalse() {
-        Data left = new Data(new byte[] {1, 2});
-        Data rigth = new Data(new byte[] {1, 3});
+        Data left = new Data(new byte[] {1, 2}, "1");
+        Data rigth = new Data(new byte[] {1, 3}, "1");
         Result result = binaryFileComparator.compare(left, rigth);
 
         assertThat(result).isNotNull();
@@ -48,8 +48,8 @@ public class BinaryFileComparatorTest {
 
     @Test
     public void resultContainsIndexOfTheByteWithDifference() {
-        Data left = new Data(new byte[] {1, 2});
-        Data rigth = new Data(new byte[] {1, 3});
+        Data left = new Data(new byte[] {1, 2}, "1");
+        Data rigth = new Data(new byte[] {1, 3}, "1");
         Result result = binaryFileComparator.compare(left, rigth);
 
         assertThat(result).isNotNull();
@@ -59,8 +59,8 @@ public class BinaryFileComparatorTest {
 
     @Test
     public void resultContainsLenghtOfDifference() {
-        Data left = new Data(new byte[] {1, 2});
-        Data rigth = new Data(new byte[] {1, 3});
+        Data left = new Data(new byte[] {1, 2}, "1");
+        Data rigth = new Data(new byte[] {1, 3}, "1");
         Result result = binaryFileComparator.compare(left, rigth);
 
         assertThat(result).isNotNull();
@@ -70,8 +70,8 @@ public class BinaryFileComparatorTest {
 
     @Test
     public void resultContainsMultipleDifferences() {
-        Data left = new Data(new byte[] {1, 2, 4, 6, 7, 8, 9});
-        Data rigth = new Data(new byte[] {1, 3, 5, 6, 7, 9, 8});
+        Data left = new Data(new byte[] {1, 2, 4, 6, 7, 8, 9}, "1");
+        Data rigth = new Data(new byte[] {1, 3, 5, 6, 7, 9, 8}, "1");
         Result result = binaryFileComparator.compare(left, rigth);
 
         assertThat(result).isNotNull();
