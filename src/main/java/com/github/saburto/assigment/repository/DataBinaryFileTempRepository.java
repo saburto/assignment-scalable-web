@@ -27,6 +27,8 @@ public class DataBinaryFileTempRepository implements DataRepository {
     @Override
     public Data getById(String id, Side side) {
         try {
+            throwExceptionIfFileNoExists(id, side);
+            
             byte[] bytes = Files.readAllBytes(getTempFilePath(id, side));
             return new Data(bytes, id);
         } catch (IOException e) {
@@ -34,10 +36,20 @@ public class DataBinaryFileTempRepository implements DataRepository {
         }
     }
 
+    private void throwExceptionIfFileNoExists(String id, Side side) {
+        if(!fileExists(id, side)){
+            throw new FileNoYetExistsException(id, side);
+        }
+    }
+
     private void existIdThenThrowException(String id, Side side) {
-        if(Files.exists(getTempFilePath(id, side))){
+        if(fileExists(id, side)){
             throw new IdAlreadyExistsException(id, side);
         }
+    }
+
+    private boolean fileExists(String id, Side side) {
+        return Files.exists(getTempFilePath(id, side));
     }
 
     private Path getTempFilePath(String id, Side side) {

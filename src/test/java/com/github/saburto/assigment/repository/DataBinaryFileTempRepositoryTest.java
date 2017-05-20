@@ -44,7 +44,6 @@ public class DataBinaryFileTempRepositoryTest {
         }
     }
 
-
     @Test
     public void saveFileIntoTmpDir() {
         Path tmpPath = getTempPath();
@@ -81,6 +80,14 @@ public class DataBinaryFileTempRepositoryTest {
         Data data = dataBinaryRepository.getById(id, Side.LEFT);
 
         assertThat(data).isNotNull().extracting(Data::getBytes).containsExactly(bytes);
+    }
+    
+    @Test
+    public void throwExceptionWhenFileForIdAndSideNoExists() {
+        expectedException.expect(FileNoYetExistsException.class);
+        expectedException.expectMessage(is("File for Id [321] not exists yet for side LEFT"));
+
+        dataBinaryRepository.getById("321", Side.LEFT);
     }
     
     private Path getTempPath() {
