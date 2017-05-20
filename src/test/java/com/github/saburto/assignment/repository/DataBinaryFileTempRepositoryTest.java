@@ -1,4 +1,4 @@
-package com.github.saburto.assigment.repository;
+package com.github.saburto.assignment.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.CoreMatchers.is;
@@ -14,8 +14,12 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import com.github.saburto.assigment.data.Data;
-import com.github.saburto.assigment.data.Side;
+import com.github.saburto.assignment.data.Data;
+import com.github.saburto.assignment.data.Side;
+import com.github.saburto.assignment.repository.DataBinaryFileTempRepository;
+import com.github.saburto.assignment.repository.DataRepository;
+import com.github.saburto.assignment.repository.FileNoYetExistsException;
+import com.github.saburto.assignment.repository.IdAlreadyExistsException;
 
 public class DataBinaryFileTempRepositoryTest {
 

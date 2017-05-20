@@ -1,12 +1,15 @@
-package com.github.saburto.assigment.comparator;
+package com.github.saburto.assignment.comparator;
 
 import static java.util.Collections.emptyMap;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.github.saburto.assigment.data.Data;
+import org.springframework.stereotype.Component;
 
+import com.github.saburto.assignment.data.Data;
+
+@Component
 public class BinaryFileComparator {
 
     private static final int RESET_INDEX = 0;

@@ -1,6 +1,6 @@
-package com.github.saburto.assigment.repository;
+package com.github.saburto.assignment.repository;
 
-import com.github.saburto.assigment.data.Side;
+import com.github.saburto.assignment.data.Side;
 
 public class FileNoYetExistsException extends RuntimeException {
     private static final long serialVersionUID = 1L;

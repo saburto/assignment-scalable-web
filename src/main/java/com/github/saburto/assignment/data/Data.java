@@ -1,4 +1,4 @@
-package com.github.saburto.assigment.data;
+package com.github.saburto.assignment.data;
 
 public class Data {
 

@@ -1,16 +1,21 @@
-package com.github.saburto.assigment.service;
+package com.github.saburto.assignment.service;
 
-import com.github.saburto.assigment.comparator.BinaryFileComparator;
-import com.github.saburto.assigment.comparator.Result;
-import com.github.saburto.assigment.data.Data;
-import com.github.saburto.assigment.data.Side;
-import com.github.saburto.assigment.repository.DataRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import com.github.saburto.assignment.comparator.BinaryFileComparator;
+import com.github.saburto.assignment.comparator.Result;
+import com.github.saburto.assignment.data.Data;
+import com.github.saburto.assignment.data.Side;
+import com.github.saburto.assignment.repository.DataRepository;
+
+@Service
 public class DiffService {
 
     private final DataRepository dataRepository;
     private final BinaryFileComparator binaryFileComparator;
 
+    @Autowired
     public DiffService(DataRepository dataRepository, BinaryFileComparator binaryFileComparator) {
         this.dataRepository = dataRepository;
         this.binaryFileComparator = binaryFileComparator;

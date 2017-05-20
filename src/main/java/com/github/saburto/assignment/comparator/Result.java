@@ -1,4 +1,4 @@
-package com.github.saburto.assigment.comparator;
+package com.github.saburto.assignment.comparator;
 
 import static java.util.Collections.unmodifiableMap;
 

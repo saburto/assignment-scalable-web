@@ -1,12 +1,33 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.5.2.RELEASE")
+    }
+}
+
 apply plugin: 'java-library'
+apply plugin: 'org.springframework.boot'
+
+jar {
+    baseName = 'assignment-scalable-web'
+    version =  '1.0.0'
+}
 
 repositories {
     jcenter()
 }
 
 dependencies {
+
+	compile("org.springframework.boot:spring-boot-starter-web") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+    compile("org.springframework.boot:spring-boot-starter-jetty")
+
     testCompile 'junit:junit:4.12'
     testCompile 'org.assertj:assertj-core:3.7.0'
     testCompile "org.mockito:mockito-core:2.+"
+    testCompile "org.springframework.boot:spring-boot-starter-test"
 }
-

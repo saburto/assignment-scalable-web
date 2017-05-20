@@ -1,13 +1,16 @@
-package com.github.saburto.assigment.repository;
+package com.github.saburto.assignment.repository;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import com.github.saburto.assigment.data.Data;
-import com.github.saburto.assigment.data.Side;
+import org.springframework.stereotype.Repository;
 
+import com.github.saburto.assignment.data.Data;
+import com.github.saburto.assignment.data.Side;
+
+@Repository
 public class DataBinaryFileTempRepository implements DataRepository {
 
     @Override

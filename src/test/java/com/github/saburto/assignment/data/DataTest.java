@@ -1,8 +1,10 @@
-package com.github.saburto.assigment.data;
+package com.github.saburto.assignment.data;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.Test;
+
+import com.github.saburto.assignment.data.Data;
 
 public class DataTest {
 
