@@ -28,4 +28,8 @@ public class DiffService {
         
         return binaryFileComparator.compare(left, right);
     }
+
+    public void save(String id, byte[] bytes, Side side) {
+        dataRepository.save(new Data(bytes, id), side);
+    }
 }
