@@ -8,4 +8,18 @@ public class Data {
         this.bytes = bytes;
     }
 
+    public boolean isSameSize(Data data2) {
+        return bytes.length == data2.bytes.length;
+    }
+
+    public int size() {
+        return bytes.length;
+    }
+
+    public boolean hasSameByte(int index, Data rigth) {
+        return bytes[index] == rigth.bytes[index];
+    }
+    
+    
+
 }

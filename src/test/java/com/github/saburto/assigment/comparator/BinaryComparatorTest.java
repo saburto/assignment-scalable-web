@@ -24,4 +24,24 @@ public class BinaryComparatorTest {
         assertThat(result).isNotNull();
         assertThat(result.isEqual()).isTrue();
     }
+    
+    @Test
+    public void compareDifferentSizeDataShouldReturnResultFalse() {
+        Data left = new Data(new byte[] {1, 2});
+        Data rigth = new Data(new byte[] {1, 2, 3});
+        Result result = binaryComparator.compare(left, rigth);
+        
+        assertThat(result).isNotNull();
+        assertThat(result.isEqual()).isFalse();
+    }
+    
+    @Test
+    public void compareSameSizeButDifferentDataShouldReturnResultFalse() {
+        Data left = new Data(new byte[] {1, 2});
+        Data rigth = new Data(new byte[] {1, 3});
+        Result result = binaryComparator.compare(left, rigth);
+        
+        assertThat(result).isNotNull();
+        assertThat(result.isEqual()).isFalse();
+    }
 }
