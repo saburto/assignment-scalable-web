@@ -19,11 +19,6 @@ $ ./gradlew integrationTest
 
 ### How to run it
 
-To run locally on port 8080
-```sh
-$ ./gradlew build & java -jar build/libs/assignment-scalable-web-1.0.0.jar
-```
-
 #### Usage
 
 To run locally on port 8080
@@ -49,8 +44,8 @@ To get diff information
 $ curl localhost:8080/v1/diff/<<ID>>
 ```
 Parameters:
-<<ID>> Unique ID for comparation. See example.
-<<DATA>> Base64 string encoded
+* ID: Unique ID for comparation. See example.
+* DATA: Base64 string encoded
 
 ### Example
 
