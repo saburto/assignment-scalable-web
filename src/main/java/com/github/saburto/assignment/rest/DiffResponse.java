@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class DiffResponse {
 
     private final boolean equal;
@@ -18,6 +21,13 @@ public class DiffResponse {
             .map(entry -> new Detail(entry.getKey(), entry.getValue()))
             .sorted()
             .collect(Collectors.toList());
+    }
+
+    @JsonCreator
+    public DiffResponse(@JsonProperty("equal") boolean equal, @JsonProperty("equalSize") boolean equalSize, @JsonProperty("diffs") List<Detail> diffs) {
+        this.equal = equal;
+        this.equalSize = equalSize;
+        this.diffs = diffs;
     }
 
     public boolean isEqual() {
@@ -36,7 +46,8 @@ public class DiffResponse {
         private final Integer index;
         private final Integer length;
 
-        public Detail(Integer index, Integer length) {
+        @JsonCreator
+        public Detail(@JsonProperty("index") Integer index, @JsonProperty("lenght") Integer length) {
             this.index = index;
             this.length = length;
         }
