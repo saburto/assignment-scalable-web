@@ -36,9 +36,6 @@ public class DiffControllerTest {
     @MockBean
     private DiffService diffService;
 
-    @Autowired
-    private DiffController diffController;
-
     @Test
     public void diff() throws Exception {
 
