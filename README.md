@@ -48,11 +48,11 @@ Parameters:
 * DATA: Base64 string encoded
 
 ### Example
-
+On this example we use the Id 445 for comparation.
 Post first data on the left.
 Request:
 ```sh
- curl localhost:8080/v1/diff/444/left \
+ curl localhost:8080/v1/diff/445/left \
 -H "Content-Type: application/json" \
 -X POST -d '{"data":"MTIz"}'
 ```
