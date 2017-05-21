@@ -48,8 +48,11 @@ Parameters:
 * DATA: Base64 string encoded
 
 ### Example
+
 On this example we use the Id 445 for comparation.
+
 Post first data on the left.
+
 Request:
 ```sh
  curl localhost:8080/v1/diff/445/left \
@@ -61,6 +64,7 @@ Response:
 #empty
 ```
 Post second different data on the right.
+
 Request:
 ```sh
  curl localhost:8080/v1/diff/445/right \
